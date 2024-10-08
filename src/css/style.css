@@ -4,7 +4,26 @@
   box-sizing: border-box;
 }
 
+:root{
+  --card-width: 300px;
+  --card-height: 450px;
+  --card-border-radius: 10px;
+  --card-border-width: 2px;
+
+  --icon-size: 40px;
+  --card-header-footer-height: 25%;
+  --symbol-height: 40%;
+  --padding-header-footer: 5%;
+
+  --bomb-gradient: linear-gradient(45deg, black, grey, black);
+  --defuse-gradient: linear-gradient(45deg, green, lightgreen, green);
+  --points-gradient: linear-gradient(45deg, grey, white, grey);
+  --nope-gradient: linear-gradient(45deg, red, lightcoral, red);
+  --skip-turn-gradient: linear-gradient(45deg, blue, lightblue, blue);
+}
+
 body {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,13 +32,14 @@ body {
 }
 
 #card{
-  border: solid 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 40vh;
-  width: 30vh;
+  justify-content: space-between;
+  height: var(--card-height);
+  width: var(--card-width);
+  border: solid var(--card-border-width) black;
+  border-radius: var(--card-border-radius);
 }
 
 button{
@@ -29,4 +49,56 @@ button{
 
 .hide{
   display: none;
+}
+
+.icon {
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+#symbol{
+  height: var(--symbol-height);
+}
+
+#cardHeader{
+  display: flex;
+  height: var(--card-header-footer-height);
+  padding: var(--padding-header-footer);
+}
+
+#cardFooter{
+  display: flex;
+  transform: rotate(180deg);
+  height: var(--card-header-footer-height);
+  padding: var(--padding-header-footer);
+}
+
+#cardDesc{
+  display: flex;
+  flex-direction: column;
+}
+
+#cardDesc{
+  padding: 0 10px 0 10px;
+}
+
+.black{
+  background: var(--bomb-gradient);
+  color: white;
+}
+
+.green{
+  background: var(--defuse-gradient);
+}
+
+.white{
+  background: var(--points-gradient);
+}
+
+.red{
+  background: var(--nope-gradient);
+}
+
+.blue{
+  background: var(--skip-turn-gradient);
 }

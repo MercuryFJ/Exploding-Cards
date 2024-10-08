@@ -2,37 +2,66 @@
 import { Card } from "./cards.js";
 import * as c from "./constants.js";
 
+// --- DOM ITEMS ---
+//Container of the card. This will be contains the type and the value of the card.
+const cardElement = document.createElement("div");
+
+//This button allows you to draw a card.
+const drawButton = document.createElement("button");
+
+//This represents the type of the card in the card container.
+const cardType = document.createElement("h1");
+
+//This represents the value of the card in the card container (only with points card type).
+const cardValue = document.createElement("h1");
+
+//This button allows to restart the game.
+const restartButton = document.createElement("button");
+
+//It notifies you that the game has ended.
+const endGameText = document.createElement("h1");
+
+//This will be contains the items of the card header
+let cardHeader = document.createElement("div");
+
+//Contains the description and the type of the card. This will include in the card header and footer.
+let typeDescContainer = document.createElement("div");
+
+//The icon of the card. You can find this in the card header or card footer.
+let iconElement = document.createElement("img");
+
+//This item is the center symbol of the card.
+let imageElement = document.createElement("img");
+
+//This contains the description of the card
+let cardDescElement = document.createElement("p");
+
+//This container will contains the clone of the card header
+let cardFooter;
+
 // --- CODE ---
 let deck = [];
-loadDeck();
-
-c.drawButton.textContent = "Draw card";
-c.cardElement.setAttribute("id", "card");
-c.restartButton.classList.add("hide");
-c.restartButton.textContent = "Restart";
-c.endGameText.classList.add("hide");
-c.endGameText.textContent = "Game Over";
-
+loadGame();
 showCard();
-document.body.append(c.drawButton, c.cardElement);
 
 // --- EVENTS ---
-c.drawButton.addEventListener("click", () => {
+drawButton.addEventListener("click", () => {
     deck.pop();
     if (deck.length === 0) {
         gameOver();
     } else {
+        cardElement.removeChild(cardFooter);
         showCard();
     }
     console.log(deck);
 });
 
-c.restartButton.addEventListener("click", () => {
-    loadDeck();
-    c.endGameText.classList.add("hide");
-    c.restartButton.classList.add("hide");
-    c.drawButton.classList.remove("hide");
-    c.cardElement.style.display = "flex";
+restartButton.addEventListener("click", () => {
+    loadGame();
+    endGameText.classList.add("hide");
+    restartButton.classList.add("hide");
+    drawButton.classList.remove("hide");
+    cardElement.style.display = "flex";
 });
 
 // --- FUNCTIONS ---
@@ -90,27 +119,51 @@ function fillDeck() {
 //Shows the card if the deck is not empty.
 function showCard() {
     let lastCard = deck[deck.length - 1];
-    c.cardType.innerText = lastCard.type;
+    cardType.innerText = lastCard.type;
+    cardDescElement.innerText = lastCard.desc;
+    iconElement.setAttribute("src", lastCard.icon);
+    imageElement.setAttribute("src", lastCard.icon);
+    cardElement.classList = "";
+    cardElement.classList.add(lastCard.color);
     if (lastCard.value != null) {
-        c.cardValue.innerText = lastCard.value;
+        cardValue.innerText = lastCard.value;
     } else {
-        c.cardValue.innerText = "";
+        cardValue.innerText = "";
     }
-    c.cardElement.append(c.cardType, c.cardValue);
+    cardFooter = cardHeader.cloneNode(true);
+    cardFooter.setAttribute("id", "cardFooter");
+    cardElement.append(cardHeader, imageElement, cardFooter);
 }
 
 //Shows a a message when the deck runs out of cards.
-function gameOver(){
-    c.drawButton.classList.add("hide");
-    c.cardElement.style.display = "none";
-    c.restartButton.classList.remove("hide");
-    c.endGameText.classList.remove("hide");
-    document.body.append(c.restartButton, c.endGameText);
+function gameOver() {
+    drawButton.classList.add("hide");
+    cardElement.style.display = "none";
+    restartButton.classList.remove("hide");
+    endGameText.classList.remove("hide");
+    document.body.append(restartButton, endGameText);
 }
 
-//Fill and shuffle the deck of cards.
-function loadDeck() {
+//Fill and shuffle the deck of cards. Assigns values ​​to DOM elements.
+function loadGame() {
     fillDeck();
     cardsShuffle();
     console.log(deck);
+
+    drawButton.textContent = "Draw card";
+    cardElement.setAttribute("id", "card");
+    cardHeader.setAttribute("id", "cardHeader");
+    iconElement.classList.add("icon"); 
+    imageElement.setAttribute("id", "symbol");
+    typeDescContainer.setAttribute("id", "cardDesc");
+
+    typeDescContainer.append(cardType, cardDescElement);
+    cardHeader.append(iconElement, typeDescContainer, cardValue);
+    document.body.append(drawButton, cardElement);
+
+    restartButton.textContent = "Restart";
+    restartButton.classList.add("hide");
+    
+    endGameText.textContent = "Game Over";
+    endGameText.classList.add("hide");
 }
