@@ -8,7 +8,7 @@
   --card-width: 300px;
   --card-height: 450px;
   --card-border-radius: 10px;
-  --card-border-width: 2px;
+  --card-border-width: 2.5px;
 
   --icon-size: 40px;
   --card-header-footer-height: 25%;
@@ -17,18 +17,41 @@
 
   --bomb-gradient: linear-gradient(45deg, black, grey, black);
   --defuse-gradient: linear-gradient(45deg, green, lightgreen, green);
-  --points-gradient: linear-gradient(45deg, grey, white, grey);
+  --points-gradient: linear-gradient(45deg, black, white, black);
   --nope-gradient: linear-gradient(45deg, red, lightcoral, red);
   --skip-turn-gradient: linear-gradient(45deg, blue, lightblue, blue);
+
+  --font-color: white;
+  --card-box-shadow: 5px 10px 20px;
+  --drop-sahdow-symbol: drop-shadow(7px 7px 3px rgba(0, 0, 0, 0.5));
+  --drop-shadow-icon: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+
+  --gap-title-game-container: 30px;
 }
 
 body {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   height: 100vh;
+  background: radial-gradient(circle, red 1%, black 80%);
+  gap: var(--gap-title-game-container);
+}
+
+.game-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+h1{
+  color: orange;
+  font-size: 4rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 #card{
@@ -40,11 +63,8 @@ body {
   width: var(--card-width);
   border: solid var(--card-border-width) black;
   border-radius: var(--card-border-radius);
-}
-
-button{
-  margin-bottom: 15px;
-  font-size: large;
+  color: var(--font-color);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .hide{
@@ -54,10 +74,12 @@ button{
 .icon {
   height: var(--icon-size);
   width: var(--icon-size);
+  filter: var(--drop-shadow-icon);
 }
 
 #symbol{
   height: var(--symbol-height);
+  filter: var(--drop-sahdow-symbol);
 }
 
 #cardHeader{
@@ -76,29 +98,126 @@ button{
 #cardDesc{
   display: flex;
   flex-direction: column;
+  padding: 0 10px 0 10px;
 }
 
-#cardDesc{
-  padding: 0 10px 0 10px;
+#end-game-text{
+  color: white;
+  font-size: 2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .black{
   background: var(--bomb-gradient);
-  color: white;
+  box-shadow: var(--card-box-shadow) black;
 }
 
 .green{
   background: var(--defuse-gradient);
+  box-shadow: var(--card-box-shadow) darkgreen;
 }
 
 .white{
   background: var(--points-gradient);
+  box-shadow: var(--card-box-shadow) darkgrey;
 }
 
 .red{
   background: var(--nope-gradient);
+  box-shadow: var(--card-box-shadow) darkred;
 }
 
 .blue{
   background: var(--skip-turn-gradient);
+  box-shadow: var(--card-box-shadow) darkblue;
+}
+
+
+/* BUTTON CSS */
+.button-27 {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150px;
+  will-change: transform;
+}
+
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 20px;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100px;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
