@@ -17,7 +17,7 @@
 
   --bomb-gradient: linear-gradient(45deg, black, grey, black);
   --defuse-gradient: linear-gradient(45deg, green, lightgreen, green);
-  --points-gradient: linear-gradient(45deg, black, white, black);
+  --points-gradient: linear-gradient(45deg, black, grey, black);
   --nope-gradient: linear-gradient(45deg, red, lightcoral, red);
   --skip-turn-gradient: linear-gradient(45deg, blue, lightblue, blue);
 
